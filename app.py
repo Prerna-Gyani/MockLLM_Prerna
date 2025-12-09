@@ -1,11 +1,10 @@
 import streamlit as st
 from openai import OpenAI
 
-st.title("Mock ChatGPT (Works on Streamlit Cloud Without API Key)")
+st.title("Mock ChatGPT (Streamlit Cloud Compatible)")
 
-# Public mock OpenAI server
 BASE_URL = "https://mockllm.anya2a.com/v1"
-DUMMY_KEY = "DeepChat"  # Public dummy key accepted by mock API
+DUMMY_KEY = "DeepChat"
 
 prompt = st.text_area("Ask something:")
 
@@ -13,7 +12,7 @@ if st.button("Generate Mock Response"):
     try:
         client = OpenAI(
             api_key=DUMMY_KEY,
-            base_url=BASE_URL
+            base_url=BASE_URL  # <-- This is valid in new SDK
         )
 
         response = client.chat.completions.create(
